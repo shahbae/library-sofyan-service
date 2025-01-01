@@ -15,16 +15,23 @@ class AnggotaController extends Controller
      */
     public function index()
     {
+        $pageSize = request()->query('page_size', 10);
+        $page = request()->query('page', 1);
+
         // Mengambil semua data anggota yang diurutkan berdasarkan yang terbaru
-        $anggota = Anggota::latest()->get(
-            ['id', 'nama', 'email', 'no_hp', 'alamat', 'tanggal_daftar', 'status_anggota']
-        );
+        $anggota = Anggota::select(['id', 'nama', 'email', 'no_hp', 'alamat', 'tanggal_daftar', 'status_anggota'])
+        ->orderBy('created_at', 'desc') // Urutkan berdasarkan tanggal terbaru
+        ->paginate($pageSize, ['*'], 'page', $page);
+
 
         // Mengembalikan data anggota dalam format JSON
         return response()->json([
             'status' => 'success',
             'message' => 'Data anggota berhasil dimuat',
-            'data' => $anggota,
+            'data' => $anggota->items(),
+            'total' => $anggota->total(),
+            'current_page' => $anggota->currentPage(),
+            'last_page' => $anggota->lastPage(),
         ], 200);
     }
 
