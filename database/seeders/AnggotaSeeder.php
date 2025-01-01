@@ -25,7 +25,7 @@ class AnggotaSeeder extends Seeder
                 'no_hp' => $faker->phoneNumber(),  // Nomor HP
                 'alamat' => $faker->address(),  // Alamat anggota
                 'tanggal_daftar' => $faker->date(),  // Tanggal pendaftaran
-                'status_anggota' => $faker->randomElement(['aktif', 'tidak aktif']), // Status aktif/tidak aktif
+                'status_anggota' => $faker->randomElement(['active', 'inactive']), // Status aktif/tidak aktif
             ]);
         }
     }

@@ -22,11 +22,7 @@ Route::resource('anggota', AnggotaController::class)->only([
     'index', 'store', 'show', 'update', 'destroy'
 ]);
 
-Route::put('/debug', function (\Illuminate\Http\Request $request) {
-    return response()->json([
-        'method' => $request->method(),
-        'data' => $request->all(),
-    ]);
-});
+Route::get('/dashboard', [AnggotaController::class, 'dashboard']);
+
 
 

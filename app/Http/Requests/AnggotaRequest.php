@@ -27,7 +27,7 @@ class AnggotaRequest extends FormRequest
             'email' => 'required|email|unique:anggota,email,'. $id,
             'no_hp' => 'required|string|max:15',
             'alamat' => 'required|string|max:255',
-            'status_anggota' => 'required|in:aktif,tidak aktif',
+            'status_anggota' => 'required|in:active,inactive',
         ];
     }
 

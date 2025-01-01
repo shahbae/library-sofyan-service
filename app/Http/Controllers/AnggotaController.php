@@ -16,7 +16,9 @@ class AnggotaController extends Controller
     public function index()
     {
         // Mengambil semua data anggota yang diurutkan berdasarkan yang terbaru
-        $anggota = Anggota::latest()->get();
+        $anggota = Anggota::latest()->get(
+            ['id', 'nama', 'email', 'no_hp', 'alamat', 'tanggal_daftar', 'status_anggota']
+        );
 
         // Mengembalikan data anggota dalam format JSON
         return response()->json([
@@ -129,5 +131,20 @@ class AnggotaController extends Controller
             'status' => 'success',
             'message' => 'Anggota berhasil dihapus',
         ], 200);
+    }
+
+    public function dashboard()
+    {
+        $totalAnggota = Anggota::count();
+        $totalAnggotaAktif = Anggota::where('status_anggota', 'active')->count();
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Data dashboard berhasil dimuat',
+            'data' => [
+                'total_anggota' => $totalAnggota,
+                'total_anggota_aktif' => $totalAnggotaAktif,
+            ],
+        ]);
     }
 }

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('no_hp');
             $table->text('alamat');
             $table->date('tanggal_daftar'); 
-            $table->enum('status_anggota', ['aktif', 'tidak aktif'])->default('aktif');
+            $table->enum('status_anggota', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });
     }
