@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AnggotaController;
+use App\Http\Controllers\DivisionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,10 @@ Route::delete('anggota/{id}', [AnggotaController::class, 'destroy']); // Hapus a
 
 
 Route::resource('anggota', AnggotaController::class)->only([
+    'index', 'store', 'show', 'update', 'destroy'
+]);
+
+Route::resource('division', DivisionController::class)->only([
     'index', 'store', 'show', 'update', 'destroy'
 ]);
 

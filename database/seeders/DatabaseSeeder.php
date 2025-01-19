@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call(AnggotaSeeder::class); 
+        $this->call(DivisionTableSeeder::class);
         
         // \App\Models\User::factory(10)->create();
 
